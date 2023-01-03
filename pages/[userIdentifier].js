@@ -58,16 +58,16 @@ function DashboardPapa(props) {
     // adding new item
     const addData = async (item) => {
       let newData = {...dataProps, ...item}
-    
+      console.log("here");
       console.dir(newData);
       console.log(JSON.stringify(newData))
 
-      if(address !== newData.key){
-        return {
-          message: "you aren't supposed to edit others files idiot"
-        }
-      }
-      console.log(process.env.NEXT_PUBLIC_DETA_PROJECT_KEY);
+      // if(address !== newData.key){
+      //   return {
+      //     message: "you aren't supposed to edit others files idiot"
+      //   }
+      // }
+      console.log("here2");
       let data = await fetch(`https://database.deta.sh/v1/d07jlai2/humans/items`,
       {
         method: "PUT",
