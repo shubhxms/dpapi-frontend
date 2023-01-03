@@ -128,7 +128,6 @@ export const getServerSideProps = async (context) => {
         },
     }
   }catch{
-    res.statusCode = 404;
     return {
       props: {}
     };

@@ -43,7 +43,7 @@ export default function Home() {
             <h3>coming soon</h3>
             <li>encryption</li>
             <li>decentralized storage</li>
-            <li>grant access to external apps</li>
+            <li>use in other external apps</li>
           </ul>
 
         </div>
