@@ -91,7 +91,7 @@ function DashboardPapa(props) {
           <CardHeader>
           fetch your data by sending a get request at
           </CardHeader>
-          <a href={`papi.deta.dev/${userId}`}>
+          <a href={`https://papi.deta.dev/${userId}`}>
             <CardBody className={styles.card}>
                 <div className={styles.code}>
                   {`papi.deta.dev/${userId}`}
