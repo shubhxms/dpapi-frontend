@@ -62,11 +62,15 @@ function DashboardPapa(props) {
       console.dir(newData);
       console.log(JSON.stringify(newData))
 
-      // if(address !== newData.key){
-      //   return {
-      //     message: "you aren't supposed to edit others files idiot"
-      //   }
-      // }
+      if(!dataProps){
+        newData[key] = address
+      }
+      
+      if(address !== newData.key){
+        return {
+          message: "you aren't supposed to edit others files idiot"
+        }
+      }
       console.log("here2");
       let data = await fetch(`https://database.deta.sh/v1/d07jlai2/humans/items`,
       {
