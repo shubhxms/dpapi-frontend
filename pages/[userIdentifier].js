@@ -10,7 +10,7 @@ import { Card, CardHeader, CardBody, CardFooter,
   Heading, Text
 } from '@chakra-ui/react'
 
-function dashboard(props) {
+function Dashboard(props) {
     // update user identifier
     let {dataProps} = props
     // let data = dataProps
@@ -142,4 +142,4 @@ export const getServerSideProps = async (context) => {
 //   }
 // }
 
-export default dashboard
+export default Dashboard
