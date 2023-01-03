@@ -5,7 +5,7 @@ import { useSigner } from 'wagmi';
 import { useRouter } from 'next/router'
 
 
-function me() {
+function Me() {
 
     // signer
     const signer = useSigner()
@@ -31,4 +31,4 @@ function me() {
 
 }
 
-export default me
+export default Me
