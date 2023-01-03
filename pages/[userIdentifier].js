@@ -63,9 +63,9 @@ function DashboardPapa(props) {
       console.log(JSON.stringify(newData))
 
       if(!dataProps){
-        newData[key] = address
+        newData.key = address
       }
-      
+
       if(address !== newData.key){
         return {
           message: "you aren't supposed to edit others files idiot"
