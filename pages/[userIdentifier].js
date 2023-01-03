@@ -9,6 +9,8 @@ import { Card, CardHeader, CardBody, CardFooter,
   Stack, StackDivider, Box,
   Heading, Text
 } from '@chakra-ui/react'
+// require('dotenv').config()
+
 
 function DashboardPapa(props) {
     // update user identifier
@@ -41,7 +43,7 @@ function DashboardPapa(props) {
       let data = await fetch(`https://database.deta.sh/v1/d07jlai2/humans/items`,
       {
         headers: {
-          'X-API-Key': process.env.DETA_PROJECT_KEY,
+          'X-API-Key': process.env.NEXT_PUBLIC_DETA_PROJECT_KEY,
           'Content-Type' : 'application/json'
         },
         body: JSON.stringify(
@@ -65,11 +67,12 @@ function DashboardPapa(props) {
           message: "you aren't supposed to edit others files idiot"
         }
       }
+      console.log(process.env.NEXT_PUBLIC_DETA_PROJECT_KEY);
       let data = await fetch(`https://database.deta.sh/v1/d07jlai2/humans/items`,
       {
         method: "PUT",
         headers: {
-          'X-API-Key': process.env.DETA_PROJECT_KEY,
+          'X-API-Key': process.env.NEXT_PUBLIC_DETA_PROJECT_KEY,
           'Content-Type' : 'application/json'
         },
         body:
