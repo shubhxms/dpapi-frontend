@@ -85,7 +85,7 @@ function EditableItem(props) {
                 }}
                 isDisabled={isDisabled}
             >
-                <Tooltip label="edit functionality soon">
+                <Tooltip label="click to edit">
                     <EditablePreview
                         py={2}
                         px={4}
