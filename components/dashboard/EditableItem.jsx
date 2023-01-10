@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 // chakra ui imports
 import { EditablePreview, Box, useColorModeValue, IconButton, Input, useDisclosure, useEditableControls, ButtonGroup, SlideFade, Editable, Tooltip, EditableInput } from "@chakra-ui/react";
@@ -9,11 +9,27 @@ import { Check, X } from 'react-feather'
 function EditableItem(props) {
 
     // props
-    const {dataProps, isDisabled, handleEdit} = props
+    const {dataProps, dataKey, isDisabled, handleUpdate} = props
+
+    // let dataObj = {dataKey: dataProps[1]}
 
     // state vars
     const [data, setData] = useState(dataProps)
-    
+    const [key, setKey] = useState(dataKey)
+    const [value, setValue] = useState(dataProps[1])
+
+    // useEffect(() => {
+
+    //   // if (data[key] !== dataProps[0]){
+    //     let newData = {}
+
+    //     setKey(dataProps[0])
+    //     newData[dataProps[0]] = dataProps[1]
+    //     setData(newData)
+    //   // dataPair}
+
+    // }, [])
+
     // function to emit back changes
     const emitChanges = () => {
 
@@ -38,18 +54,14 @@ function EditableItem(props) {
 
     return (
         <div>
+          {/* {data &&  */}
             <Editable
-                defaultValue={data[0]}
+                defaultValue={key}
                 isPreviewFocusable={true}
-                selectAllOnFocus={false}
-                onSubmit={e => {
-                  let newData = data
-                  newData[0] = e
-                  setData(newData)
-                }}                
+                selectAllOnFocus={false}          
                 isDisabled
             >
-                <Tooltip label="edit functionality soon">
+                <Tooltip label="edit functionality soon" isDisabled>
                     <EditablePreview
                         py={2}
                         px={4}
@@ -63,15 +75,15 @@ function EditableItem(props) {
             </Editable>
             -
             <Editable
-                defaultValue={data[1]}
+                defaultValue={value}
                 isPreviewFocusable={true}
                 selectAllOnFocus={false}
                 onSubmit={e => {
-                  let newData = data
-                  newData[1] = e
-                  setData(newData)
+                  let newData = {}
+                  newData[key] = e
+                  handleUpdate(newData)
                 }}
-                isDisabled
+                isDisabled={isDisabled}
             >
                 <Tooltip label="edit functionality soon">
                     <EditablePreview
@@ -85,6 +97,7 @@ function EditableItem(props) {
                 <Input py={2} px={4} as={EditableInput} />
                 <EditableControls />
             </Editable>
+          {/* } */}
       </div>
       )
 }

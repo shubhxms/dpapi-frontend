@@ -16,7 +16,7 @@ import EditableItem from './EditableItem';
 function Dashboard(props) {
 
     // props
-    const {dataProps, userIdentifier, editData} = props
+    const {dataProps, userIdentifier, updateData} = props
 
 
     // state vars
@@ -27,13 +27,22 @@ function Dashboard(props) {
     const address = signer?.data?._address
 
     // edit functionality
-    const handleEdit = () => {
-
+    const handleUpdate = (newData) => {
+      updateData(newData, userIdentifier)
     }
 
     //emit func
-    const handleEmit = (oldData, newData) => {
-
+    const handleEmit = (newData) => {
+      let dataNew = {}
+      for (let datapt in dataProps){
+        if(datapt === newData[0]){
+          console.log(newData)
+          dataNew[newData[0]] = newData[1]
+        }else{
+          dataNew[datapt] = dataProps[datapt]
+        }
+      }
+      console.log(dataNew);
     }
 
   return (
@@ -47,11 +56,15 @@ function Dashboard(props) {
         <CardBody>
           <Stack divider={<StackDivider />} spacing='4'>
             {data && Object.entries(data).map(dataPair =>(
+              
               <form key={uuidv4()}>
               <Box key={uuidv4()}>
                   <EditableItem
                   dataProps={dataPair}
-                  isDisabled={dataPair[0] === "key" || address !== userIdentifier}/>
+                  dataKey={dataPair[0]}
+                  isDisabled={dataPair[0] === "key" || address !== userIdentifier}
+                  handleUpdate={handleUpdate}
+                  />
                   
                   {/* <EditableItem 
                   dataProps={dataPair[1]}

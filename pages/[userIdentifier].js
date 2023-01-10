@@ -21,13 +21,28 @@ function DashboardPapa(props) {
     const router = useRouter()
     const userId = router.asPath.slice(1)
 
-
-
     // signer
     const signer = useSigner()
     const address = signer?.data?._address
     
-    // fetching data
+    // editing record
+    const updateData = async (item, key) => {
+      
+      let data = await fetch(`https://database.deta.sh/v1/d07jlai2/humans/items/${key}`,
+      {
+        method: "PATCH",
+        headers: {
+          'X-API-Key': process.env.NEXT_PUBLIC_DETA_PROJECT_KEY,
+          'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(
+          {"set": item} 
+        )
+      })
+
+      console.log(await data.json())
+
+    }    
 
     
     // editing record
@@ -40,8 +55,9 @@ function DashboardPapa(props) {
           newData[key] = value
         }
       })
-      let data = await fetch(`https://database.deta.sh/v1/d07jlai2/humans/items`,
+      let data = await fetch(`https://database.deta.sh/v1/d07jlai2/humans/items/`,
       {
+        method: "PATCH",
         headers: {
           'X-API-Key': process.env.NEXT_PUBLIC_DETA_PROJECT_KEY,
           'Content-Type' : 'application/json'
@@ -109,7 +125,10 @@ function DashboardPapa(props) {
         </div>
         {address === userId && <FormPage addData={addData}/>}
         {/* <br/> */}
-        {dataProps && <Dashboard dataProps={dataProps} userIdentifier={userId}/>}
+        {
+        dataProps && 
+        <Dashboard dataProps={dataProps} userIdentifier={userId} updateData={updateData}/>
+        }
         
     </div>
   )
